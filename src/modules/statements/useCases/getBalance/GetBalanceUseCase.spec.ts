@@ -25,15 +25,13 @@ describe("Get Balance", () => {
   it("should be able to get balance", async () => {
     const user = await createUserUseCase.execute(makeUser())
 
-    await createStatementUseCase.execute(makeStatement({
-      user_id: user.id as string,
-      amount: 100.00
-    }))
+    await createStatementUseCase.execute(
+      makeStatement(user.id as string, { amount: 100.00 })
+    )
 
-    await createStatementUseCase.execute(makeStatement({
-      user_id: user.id as string,
-      amount: 140.00
-    }))
+    await createStatementUseCase.execute(
+      makeStatement(user.id as string, { amount: 140.00 })
+    )
 
     const balance = await getBalanceUseCase.execute({user_id: user.id as string})
 
