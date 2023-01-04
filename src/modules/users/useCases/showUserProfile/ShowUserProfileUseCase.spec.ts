@@ -21,6 +21,7 @@ describe("Show User Profile", () => {
     const profile = await showUserProfileUseCase.execute(user.id as string)
 
     expect(profile).toHaveProperty("id")
+    expect(profile).toEqual(user)
   })
 
   it("should not be able to show profile of a non existing user", async () => {
